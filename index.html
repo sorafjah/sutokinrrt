@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>しゃーない、やるか！</title>
+<title>しゃーないな、やるか！</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -13,223 +13,70 @@ body {
   padding: 1.5rem 1rem 3rem;
   color: #1a1a18;
 }
-
-h1 {
-  text-align: center;
-  font-size: 18px;
-  font-weight: 500;
-  color: #444441;
-  margin-bottom: 1.5rem;
-}
-
-#app {
-  max-width: 480px;
-  margin: 0 auto;
-}
-
-.tab-row {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 1.25rem;
-}
-
+h1 { text-align: center; font-size: 18px; font-weight: 500; color: #444441; margin-bottom: 1.5rem; }
+#app { max-width: 480px; margin: 0 auto; }
+.tab-row { display: flex; gap: 8px; margin-bottom: 1.25rem; }
 .tab-btn {
-  flex: 1;
-  padding: 10px;
-  border-radius: 12px;
-  border: 0.5px solid #ccc;
-  background: #fff;
-  font-size: 14px;
-  font-weight: 500;
-  color: #888;
-  cursor: pointer;
-  transition: all 0.15s;
-  font-family: inherit;
+  flex: 1; padding: 10px; border-radius: 12px;
+  border: 0.5px solid #ccc; background: #fff;
+  font-size: 14px; font-weight: 500; color: #888;
+  cursor: pointer; transition: all 0.15s; font-family: inherit;
 }
-.tab-btn.active {
-  background: #e8e7e2;
-  color: #1a1a18;
-  border-color: #999;
-}
+.tab-btn.active { background: #e8e7e2; color: #1a1a18; border-color: #999; }
 .tab-btn:hover:not(.active) { background: #f0efeb; }
-
 .slot-wrapper {
-  border: 0.5px solid #ddd;
-  border-radius: 14px;
-  padding: 1.5rem 1.25rem;
-  background: #fff;
-  margin-bottom: 1rem;
-  min-height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  border: 0.5px solid #ddd; border-radius: 14px;
+  padding: 1.5rem 1.25rem; background: #fff;
+  margin-bottom: 1rem; min-height: 100px;
+  display: flex; align-items: center; justify-content: center; text-align: center;
 }
-
-.slot-label {
-  font-size: 11px;
-  color: #aaa;
-  letter-spacing: 0.08em;
-  margin-bottom: 6px;
-}
-
-.slot-name {
-  font-size: 24px;
-  font-weight: 500;
-  color: #1a1a18;
-  line-height: 1.3;
-}
-
-.slot-hint {
-  font-size: 13px;
-  color: #888;
-  margin-top: 5px;
-}
-
-.slot-spinning .slot-name {
-  animation: flicker 0.08s linear infinite;
-}
+.slot-label { font-size: 11px; color: #aaa; letter-spacing: 0.08em; margin-bottom: 6px; }
+.slot-name { font-size: 24px; font-weight: 500; color: #1a1a18; line-height: 1.3; }
+.slot-hint { font-size: 13px; color: #888; margin-top: 5px; }
+.slot-spinning .slot-name { animation: flicker 0.08s linear infinite; }
 @keyframes flicker {
-  0%   { opacity: 1; transform: translateY(0); }
-  49%  { opacity: 0; transform: translateY(-6px); }
-  50%  { opacity: 0; transform: translateY(6px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0%{opacity:1;transform:translateY(0)} 49%{opacity:0;transform:translateY(-6px)}
+  50%{opacity:0;transform:translateY(6px)} 100%{opacity:1;transform:translateY(0)}
 }
-
 .spin-btn {
-  width: 100%;
-  padding: 15px;
-  border-radius: 14px;
-  border: 0.5px solid #ccc;
-  background: #fff;
-  font-size: 17px;
-  font-weight: 500;
-  color: #1a1a18;
-  cursor: pointer;
-  margin-bottom: 1.5rem;
-  transition: background 0.1s, transform 0.1s;
-  font-family: inherit;
+  width: 100%; padding: 15px; border-radius: 14px;
+  border: 0.5px solid #ccc; background: #fff;
+  font-size: 17px; font-weight: 500; color: #1a1a18;
+  cursor: pointer; margin-bottom: 1.5rem;
+  transition: background 0.1s, transform 0.1s; font-family: inherit;
 }
 .spin-btn:hover { background: #f0efeb; }
 .spin-btn:active { transform: scale(0.98); }
 .spin-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-
-.detail-card {
-  border: 0.5px solid #ddd;
-  border-radius: 14px;
-  overflow: hidden;
-  display: none;
-}
+.detail-card { border: 0.5px solid #ddd; border-radius: 14px; overflow: hidden; display: none; }
 .detail-card.visible { display: block; }
-
-.detail-head {
-  padding: 1rem 1.25rem;
-  background: #f5f4f0;
-  border-bottom: 0.5px solid #ddd;
-}
-
-.detail-badge {
-  display: inline-block;
-  font-size: 11px;
-  padding: 2px 8px;
-  border-radius: 6px;
-  margin-bottom: 6px;
-  font-weight: 500;
-}
+.detail-head { padding: 1rem 1.25rem; background: #f5f4f0; border-bottom: 0.5px solid #ddd; }
+.detail-badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 6px; margin-bottom: 6px; font-weight: 500; }
 .badge-stretch { background: #d4f0e4; color: #0a6040; }
 .badge-muscle  { background: #fce5db; color: #8a3010; }
-
-.detail-title {
-  font-size: 19px;
-  font-weight: 500;
-  color: #1a1a18;
-}
-
+.detail-title { font-size: 19px; font-weight: 500; color: #1a1a18; }
 .detail-body { padding: 1rem 1.25rem; background: #fff; }
-
-.detail-meta {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 1rem;
-  flex-wrap: wrap;
-}
-.meta-item {
-  font-size: 12px;
-  color: #666;
-  background: #f5f4f0;
-  padding: 3px 10px;
-  border-radius: 6px;
-}
-
-.steps-title {
-  font-size: 12px;
-  font-weight: 500;
-  color: #888;
-  margin-bottom: 8px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.step-row {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 9px;
-  align-items: flex-start;
-}
+.detail-meta { display: flex; gap: 8px; margin-bottom: 1rem; flex-wrap: wrap; }
+.meta-item { font-size: 12px; color: #666; background: #f5f4f0; padding: 3px 10px; border-radius: 6px; }
+.steps-title { font-size: 12px; font-weight: 500; color: #888; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.06em; }
+.step-row { display: flex; gap: 10px; margin-bottom: 9px; align-items: flex-start; }
 .step-num {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: #f0efeb;
-  border: 0.5px solid #ddd;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  font-weight: 500;
-  color: #666;
-  flex-shrink: 0;
-  margin-top: 1px;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: #f0efeb; border: 0.5px solid #ddd;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 500; color: #666;
+  flex-shrink: 0; margin-top: 1px;
 }
-.step-text {
-  font-size: 14px;
-  color: #1a1a18;
-  line-height: 1.65;
-}
-
+.step-text { font-size: 14px; color: #1a1a18; line-height: 1.65; }
 .video-link {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 1rem;
-  padding: 10px 12px;
-  border-radius: 8px;
-  border: 0.5px solid #ddd;
-  color: #1a5fa8;
-  font-size: 13px;
-  text-decoration: none;
-  background: #fff;
-  transition: background 0.1s;
+  display: flex; align-items: center; gap: 8px; margin-top: 1rem;
+  padding: 10px 12px; border-radius: 8px; border: 0.5px solid #ddd;
+  color: #1a5fa8; font-size: 13px; text-decoration: none;
+  background: #fff; transition: background 0.1s;
 }
 .video-link:hover { background: #f5f4f0; }
-
-.play-icon {
-  width: 24px; height: 24px;
-  border-radius: 50%;
-  background: #e02020;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.play-triangle {
-  width: 0; height: 0;
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  border-left: 8px solid white;
-  margin-left: 2px;
-}
-
+.play-icon { width: 24px; height: 24px; border-radius: 50%; background: #e02020; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.play-triangle { width:0; height:0; border-top:5px solid transparent; border-bottom:5px solid transparent; border-left:8px solid white; margin-left:2px; }
 @media (prefers-color-scheme: dark) {
   body { background: #1a1a18; color: #e8e7e2; }
   h1 { color: #aaa; }
@@ -238,7 +85,6 @@ h1 {
   .tab-btn:hover:not(.active) { background: #333331; }
   .slot-wrapper { background: #2a2a28; border-color: #444; }
   .slot-name { color: #e8e7e2; }
-  .slot-hint { color: #888; }
   .spin-btn { background: #2a2a28; border-color: #444; color: #e8e7e2; }
   .spin-btn:hover { background: #333331; }
   .detail-card { border-color: #444; }
@@ -255,24 +101,20 @@ h1 {
 </head>
 <body>
 <div id="app">
-  <h1>🎰 しゃーない、やるか！</h1>
-
+  <h1>しゃーないな、やるか！</h1>
   <div class="tab-row">
     <button class="tab-btn active" onclick="setMode('both')">どちらでも</button>
     <button class="tab-btn" onclick="setMode('stretch')">ストレッチ</button>
     <button class="tab-btn" onclick="setMode('muscle')">筋トレ</button>
   </div>
-
   <div class="slot-wrapper" id="slotWrapper">
-    <div id="slotInner">
+    <div>
       <div class="slot-label">今日やること</div>
       <div class="slot-name" id="slotName">？？？</div>
       <div class="slot-hint" id="slotHint">ボタンを押してください</div>
     </div>
   </div>
-
-  <button class="spin-btn" id="spinBtn" onclick="spin()">🎰 しゃーない、やるか</button>
-
+  <button class="spin-btn" id="spinBtn" onclick="spin()">🌵 しゃーないな、やるか</button>
   <div class="detail-card" id="detailCard">
     <div class="detail-head">
       <div id="detailBadge" class="detail-badge"></div>
@@ -316,6 +158,28 @@ const DATA = [
   {type:'stretch', name:'足首まわし', parts:'足首・ふくらはぎ', time:'各方向10回', effect:'中',
    steps:['椅子に座り片足を浮かせる','足首をゆっくり大きく内回りに10回','外回りに10回','反対の足も同様に行う'],
    video:'https://www.youtube.com/results?search_query=足首ストレッチ'},
+  {type:'stretch', name:'ふくらはぎ伸ばし', parts:'ふくらはぎ・アキレス腱', time:'30秒×両足', effect:'高',
+   steps:['壁に両手をつき、片足を後ろに引く','後ろ足のかかとを床につけたまま前に体重をかける','ふくらはぎが伸びているのを感じながら30秒キープ','反対側も同様に行う'],
+   video:'https://www.youtube.com/results?search_query=ふくらはぎストレッチ'},
+  {type:'stretch', name:'お尻ほぐし（ピジョン）', parts:'お尻・股関節外側', time:'30秒×両側', effect:'高',
+   steps:['仰向けに寝て片膝を立てる','もう片方の足首を立てた膝の上に乗せる','両手で立てた膝を胸に引き寄せる','お尻が伸びているのを感じながら30秒キープ'],
+   video:'https://www.youtube.com/results?search_query=お尻ストレッチ+股関節'},
+  {type:'stretch', name:'わき腹伸ばし', parts:'わき腹・背中', time:'20秒×両側', effect:'中',
+   steps:['足を肩幅に開いて立つ','右手を頭の上に伸ばす','上体をゆっくり左に倒し20秒キープ','反対側も同様に行う'],
+   video:'https://www.youtube.com/results?search_query=わき腹ストレッチ'},
+  {type:'stretch', name:'太もも前ほぐし', parts:'大腿四頭筋', time:'30秒×両足', effect:'高',
+   steps:['片手で壁や椅子を支えに立つ','片足の足首をつかんで後ろに曲げる','膝が前に出ないよう太もも前面を伸ばす','30秒キープして反対側も行う'],
+   video:'https://www.youtube.com/results?search_query=大腿四頭筋ストレッチ'},
+  {type:'stretch', name:'猫のポーズ', parts:'背骨・背中全体', time:'各10回', effect:'高',
+   steps:['四つん這いになり手は肩の下、膝は腰の下','息を吸いながら背中を反らせ顔を上げる（牛のポーズ）','息を吐きながら背中を丸め顔を下げる（猫のポーズ）','ゆっくり10回繰り返す'],
+   video:'https://www.youtube.com/results?search_query=猫のポーズ+背中ストレッチ'},
+  {type:'stretch', name:'手首・前腕ほぐし', parts:'手首・前腕', time:'各方向15秒', effect:'中',
+   steps:['腕を前に伸ばし手のひらを上に向ける','もう片方の手で指先をつかみ手前に引く','15秒キープ','手のひらを下に向けて同様に行う'],
+   video:'https://www.youtube.com/results?search_query=手首ストレッチ'},
+  {type:'stretch', name:'全身伸び', parts:'全身', time:'10秒×3回', effect:'中',
+   steps:['仰向けに寝て両腕を頭上に伸ばす','つま先をピンと伸ばし、全身をできるだけ長く伸ばす','10秒キープ、脱力して繰り返す','起床直後や休憩中にもおすすめ'],
+   video:'https://www.youtube.com/results?search_query=全身ストレッチ+朝'},
+
   {type:'muscle', name:'スクワット', parts:'太もも・お尻・体幹', time:'10回×3セット', effect:'高',
    steps:['足を肩幅に開いて立つ','つま先と膝を同じ方向に向ける','背筋を伸ばしたまま膝が90度になるまで下げる','かかとで床を押すように立ち上がる'],
    video:'https://www.youtube.com/results?search_query=スクワット+正しいフォーム'},
@@ -340,6 +204,27 @@ const DATA = [
   {type:'muscle', name:'クランチ', parts:'腹筋', time:'15回×3セット', effect:'中',
    steps:['仰向けに寝て膝を90度に立てる','手を頭の後ろに添える（引っ張らない）','息を吐きながら肩甲骨が浮く程度に上体を起こす','ゆっくり下ろして繰り返す'],
    video:'https://www.youtube.com/results?search_query=クランチ+腹筋+正しいやり方'},
+  {type:'muscle', name:'ワイドスクワット', parts:'内もも・お尻・太もも', time:'12回×3セット', effect:'高',
+   steps:['足を肩幅より広く開き、つま先を外側45度に向ける','背筋を伸ばしたまま膝をつま先方向に曲げながら下げる','内ももに効いているのを意識する','かかとで押し上げるように立つ'],
+   video:'https://www.youtube.com/results?search_query=ワイドスクワット+内もも'},
+  {type:'muscle', name:'リバースランジ', parts:'太もも・お尻・バランス', time:'10回×両足×2セット', effect:'高',
+   steps:['両足をそろえて立つ','片足を大きく後ろに踏み出す','前の膝が90度になるまで腰を下げる','前足で床を押して元の姿勢に戻る'],
+   video:'https://www.youtube.com/results?search_query=リバースランジ+やり方'},
+  {type:'muscle', name:'膝つき腕立て伏せ', parts:'胸筋・肩・腕', time:'10回×3セット', effect:'中',
+   steps:['膝をついてうつ伏せになり、手を肩幅より少し広くつく','膝から頭まで一直線を意識する','肘を曲げて胸を床に近づける','ゆっくり押し上げて繰り返す'],
+   video:'https://www.youtube.com/results?search_query=膝つき腕立て伏せ+初心者'},
+  {type:'muscle', name:'デッドバグ', parts:'体幹・腹筋深部', time:'10回×両側×2セット', effect:'高',
+   steps:['仰向けに寝て両腕を天井に伸ばし、両膝を90度に曲げて浮かせる','右腕と左脚をゆっくり床方向に伸ばす','腰が浮かないよう体幹を固定したまま元に戻す','反対側も同様に行う'],
+   video:'https://www.youtube.com/results?search_query=デッドバグ+体幹トレーニング'},
+  {type:'muscle', name:'ドローイン', parts:'腹筋深部・体幹', time:'10秒×10回', effect:'高',
+   steps:['仰向けまたは立った状態で、息をゆっくり吐き切る','お腹を背骨に向かって限界まで凹ませる','呼吸を浅く続けながら10秒キープ','ゆっくり力を抜いて繰り返す'],
+   video:'https://www.youtube.com/results?search_query=ドローイン+腹横筋'},
+  {type:'muscle', name:'グルートブリッジ', parts:'お尻・ハムストリング', time:'15回×3セット', effect:'高',
+   steps:['仰向けで膝を立て、足を腰幅に開く','お尻をしっかり締めながら骨盤を持ち上げる','上で1〜2秒キープしお尻の収縮を意識する','ゆっくり下ろして繰り返す'],
+   video:'https://www.youtube.com/results?search_query=グルートブリッジ+お尻トレーニング'},
+  {type:'muscle', name:'サイドプランク', parts:'わき腹・体幹側面', time:'20秒×両側×2回', effect:'高',
+   steps:['横向きに寝て肘と足の側面で体を支える','腰が落ちないよう頭からかかとまで一直線をキープ','20秒間、呼吸を続けながら耐える','反対側も同様に行う'],
+   video:'https://www.youtube.com/results?search_query=サイドプランク+やり方'},
 ];
 
 let mode = 'both';
@@ -347,7 +232,7 @@ let spinning = false;
 
 function setMode(m) {
   mode = m;
-  document.querySelectorAll('.tab-btn').forEach((b, i) => {
+  document.querySelectorAll('.tab-btn').forEach((b,i) => {
     b.classList.toggle('active', ['both','stretch','muscle'][i] === m);
   });
 }
@@ -362,13 +247,11 @@ function spin() {
   const btn = document.getElementById('spinBtn');
   btn.disabled = true;
   document.getElementById('detailCard').classList.remove('visible');
-
   const pool = filtered();
   let ticks = 0;
   const total = 18 + Math.floor(Math.random() * 10);
   const wrapper = document.getElementById('slotWrapper');
   wrapper.classList.add('slot-spinning');
-
   const iv = setInterval(() => {
     const r = pool[Math.floor(Math.random() * pool.length)];
     document.getElementById('slotName').textContent = r.name;
@@ -388,19 +271,15 @@ function spin() {
 function showResult(item) {
   document.getElementById('slotName').textContent = item.name;
   document.getElementById('slotHint').textContent = item.parts + '　' + item.time;
-
   const badge = document.getElementById('detailBadge');
   badge.textContent = item.type === 'stretch' ? 'ストレッチ' : '筋トレ';
   badge.className = 'detail-badge ' + (item.type === 'stretch' ? 'badge-stretch' : 'badge-muscle');
-
   document.getElementById('detailTitle').textContent = item.name;
   document.getElementById('detailMeta').innerHTML =
     `<span class="meta-item">${item.parts}</span><span class="meta-item">${item.time}</span><span class="meta-item">効果: ${item.effect}</span>`;
-
-  document.getElementById('detailSteps').innerHTML = item.steps.map((s, i) =>
+  document.getElementById('detailSteps').innerHTML = item.steps.map((s,i) =>
     `<div class="step-row"><div class="step-num">${i+1}</div><div class="step-text">${s}</div></div>`
   ).join('');
-
   const vlink = document.getElementById('videoLink');
   if (item.video) {
     vlink.href = item.video;
@@ -409,7 +288,6 @@ function showResult(item) {
   } else {
     vlink.style.display = 'none';
   }
-
   document.getElementById('detailCard').classList.add('visible');
 }
 </script>
