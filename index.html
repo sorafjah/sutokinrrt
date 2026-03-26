@@ -2,7 +2,12 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="しゃーないな">
+<meta name="theme-color" content="#f5f4f0">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%23e8f5e9'/%3E%3Ctext x='90' y='125' font-size='100' text-anchor='middle'%3E🌵%3C/text%3E%3C/svg%3E">
 <title>しゃーないな、やるか！</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -10,7 +15,9 @@ body {
   font-family: -apple-system, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
   background: #f5f4f0;
   min-height: 100vh;
-  padding: 1.5rem 1rem 3rem;
+  min-height: 100dvh;
+  padding: 1.5rem 1rem env(safe-area-inset-bottom, 1.5rem);
+  padding-top: max(1.5rem, env(safe-area-inset-top));
   color: #1a1a18;
 }
 h1 { text-align: center; font-size: 18px; font-weight: 500; color: #444441; margin-bottom: 1.5rem; }
@@ -21,6 +28,7 @@ h1 { text-align: center; font-size: 18px; font-weight: 500; color: #444441; marg
   border: 0.5px solid #ccc; background: #fff;
   font-size: 14px; font-weight: 500; color: #888;
   cursor: pointer; transition: all 0.15s; font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
 }
 .tab-btn.active { background: #e8e7e2; color: #1a1a18; border-color: #999; }
 .tab-btn:hover:not(.active) { background: #f0efeb; }
@@ -44,9 +52,10 @@ h1 { text-align: center; font-size: 18px; font-weight: 500; color: #444441; marg
   font-size: 17px; font-weight: 500; color: #1a1a18;
   cursor: pointer; margin-bottom: 1.5rem;
   transition: background 0.1s, transform 0.1s; font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
 }
 .spin-btn:hover { background: #f0efeb; }
-.spin-btn:active { transform: scale(0.98); }
+.spin-btn:active { transform: scale(0.98); background: #e8e7e2; }
 .spin-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 .detail-card { border: 0.5px solid #ddd; border-radius: 14px; overflow: hidden; display: none; }
 .detail-card.visible { display: block; }
@@ -73,6 +82,7 @@ h1 { text-align: center; font-size: 18px; font-weight: 500; color: #444441; marg
   padding: 10px 12px; border-radius: 8px; border: 0.5px solid #ddd;
   color: #1a5fa8; font-size: 13px; text-decoration: none;
   background: #fff; transition: background 0.1s;
+  -webkit-tap-highlight-color: transparent;
 }
 .video-link:hover { background: #f5f4f0; }
 .play-icon { width: 24px; height: 24px; border-radius: 50%; background: #e02020; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
@@ -87,6 +97,7 @@ h1 { text-align: center; font-size: 18px; font-weight: 500; color: #444441; marg
   .slot-name { color: #e8e7e2; }
   .spin-btn { background: #2a2a28; border-color: #444; color: #e8e7e2; }
   .spin-btn:hover { background: #333331; }
+  .spin-btn:active { background: #3a3a38; }
   .detail-card { border-color: #444; }
   .detail-head { background: #222220; border-color: #444; }
   .detail-title { color: #e8e7e2; }
@@ -179,7 +190,6 @@ const DATA = [
   {type:'stretch', name:'全身伸び', parts:'全身', time:'10秒×3回', effect:'中',
    steps:['仰向けに寝て両腕を頭上に伸ばす','つま先をピンと伸ばし、全身をできるだけ長く伸ばす','10秒キープ、脱力して繰り返す','起床直後や休憩中にもおすすめ'],
    video:'https://www.youtube.com/results?search_query=全身ストレッチ+朝'},
-
   {type:'muscle', name:'スクワット', parts:'太もも・お尻・体幹', time:'10回×3セット', effect:'高',
    steps:['足を肩幅に開いて立つ','つま先と膝を同じ方向に向ける','背筋を伸ばしたまま膝が90度になるまで下げる','かかとで床を押すように立ち上がる'],
    video:'https://www.youtube.com/results?search_query=スクワット+正しいフォーム'},
