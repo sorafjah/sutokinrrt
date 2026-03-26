@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>しゃーない、やるか！</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+  background: #f5f4f0;
+  min-height: 100vh;
+  padding: 1.5rem 1rem 3rem;
+  color: #1a1a18;
+}
+
+h1 {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  color: #444441;
+  margin-bottom: 1.5rem;
+}
+
+#app {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.tab-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 1.25rem;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 12px;
+  border: 0.5px solid #ccc;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  color: #888;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+.tab-btn.active {
+  background: #e8e7e2;
+  color: #1a1a18;
+  border-color: #999;
+}
+.tab-btn:hover:not(.active) { background: #f0efeb; }
+
+.slot-wrapper {
+  border: 0.5px solid #ddd;
+  border-radius: 14px;
+  padding: 1.5rem 1.25rem;
+  background: #fff;
+  margin-bottom: 1rem;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.slot-label {
+  font-size: 11px;
+  color: #aaa;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+.slot-name {
+  font-size: 24px;
+  font-weight: 500;
+  color: #1a1a18;
+  line-height: 1.3;
+}
+
+.slot-hint {
+  font-size: 13px;
+  color: #888;
+  margin-top: 5px;
+}
+
+.slot-spinning .slot-name {
+  animation: flicker 0.08s linear infinite;
+}
+@keyframes flicker {
+  0%   { opacity: 1; transform: translateY(0); }
+  49%  { opacity: 0; transform: translateY(-6px); }
+  50%  { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.spin-btn {
+  width: 100%;
+  padding: 15px;
+  border-radius: 14px;
+  border: 0.5px solid #ccc;
+  background: #fff;
+  font-size: 17px;
+  font-weight: 500;
+  color: #1a1a18;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  transition: background 0.1s, transform 0.1s;
+  font-family: inherit;
+}
+.spin-btn:hover { background: #f0efeb; }
+.spin-btn:active { transform: scale(0.98); }
+.spin-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.detail-card {
+  border: 0.5px solid #ddd;
+  border-radius: 14px;
+  overflow: hidden;
+  display: none;
+}
+.detail-card.visible { display: block; }
+
+.detail-head {
+  padding: 1rem 1.25rem;
+  background: #f5f4f0;
+  border-bottom: 0.5px solid #ddd;
+}
+
+.detail-badge {
+  display: inline-block;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.badge-stretch { background: #d4f0e4; color: #0a6040; }
+.badge-muscle  { background: #fce5db; color: #8a3010; }
+
+.detail-title {
+  font-size: 19px;
+  font-weight: 500;
+  color: #1a1a18;
+}
+
+.detail-body { padding: 1rem 1.25rem; background: #fff; }
+
+.detail-meta {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+.meta-item {
+  font-size: 12px;
+  color: #666;
+  background: #f5f4f0;
+  padding: 3px 10px;
+  border-radius: 6px;
+}
+
+.steps-title {
+  font-size: 12px;
+  font-weight: 500;
+  color: #888;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.step-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 9px;
+  align-items: flex-start;
+}
+.step-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #f0efeb;
+  border: 0.5px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 500;
+  color: #666;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.step-text {
+  font-size: 14px;
+  color: #1a1a18;
+  line-height: 1.65;
+}
+
+.video-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 1rem;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 0.5px solid #ddd;
+  color: #1a5fa8;
+  font-size: 13px;
+  text-decoration: none;
+  background: #fff;
+  transition: background 0.1s;
+}
+.video-link:hover { background: #f5f4f0; }
+
+.play-icon {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: #e02020;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.play-triangle {
+  width: 0; height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid white;
+  margin-left: 2px;
+}
+
+@media (prefers-color-scheme: dark) {
+  body { background: #1a1a18; color: #e8e7e2; }
+  h1 { color: #aaa; }
+  .tab-btn { background: #2a2a28; border-color: #444; color: #888; }
+  .tab-btn.active { background: #3a3a38; color: #e8e7e2; border-color: #666; }
+  .tab-btn:hover:not(.active) { background: #333331; }
+  .slot-wrapper { background: #2a2a28; border-color: #444; }
+  .slot-name { color: #e8e7e2; }
+  .slot-hint { color: #888; }
+  .spin-btn { background: #2a2a28; border-color: #444; color: #e8e7e2; }
+  .spin-btn:hover { background: #333331; }
+  .detail-card { border-color: #444; }
+  .detail-head { background: #222220; border-color: #444; }
+  .detail-title { color: #e8e7e2; }
+  .detail-body { background: #2a2a28; }
+  .meta-item { background: #333331; color: #aaa; }
+  .step-num { background: #333331; border-color: #444; color: #aaa; }
+  .step-text { color: #e8e7e2; }
+  .video-link { background: #2a2a28; border-color: #444; color: #6ea8e0; }
+  .video-link:hover { background: #333331; }
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <h1>🎰 しゃーない、やるか！</h1>
+
+  <div class="tab-row">
+    <button class="tab-btn active" onclick="setMode('both')">どちらでも</button>
+    <button class="tab-btn" onclick="setMode('stretch')">ストレッチ</button>
+    <button class="tab-btn" onclick="setMode('muscle')">筋トレ</button>
+  </div>
+
+  <div class="slot-wrapper" id="slotWrapper">
+    <div id="slotInner">
+      <div class="slot-label">今日やること</div>
+      <div class="slot-name" id="slotName">？？？</div>
+      <div class="slot-hint" id="slotHint">ボタンを押してください</div>
+    </div>
+  </div>
+
+  <button class="spin-btn" id="spinBtn" onclick="spin()">🎰 しゃーない、やるか</button>
+
+  <div class="detail-card" id="detailCard">
+    <div class="detail-head">
+      <div id="detailBadge" class="detail-badge"></div>
+      <div class="detail-title" id="detailTitle"></div>
+    </div>
+    <div class="detail-body">
+      <div class="detail-meta" id="detailMeta"></div>
+      <div class="steps-title">やり方</div>
+      <div id="detailSteps"></div>
+      <a id="videoLink" class="video-link" href="#" target="_blank" style="display:none">
+        <div class="play-icon"><div class="play-triangle"></div></div>
+        <span id="videoLinkText"></span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+const DATA = [
+  {type:'stretch', name:'股関節まわし', parts:'股関節・腰', time:'30秒×両側', effect:'高',
+   steps:['仰向けに寝て片足を立てる','立てた膝を外側にゆっくり倒す','10秒キープ、元に戻す','内側にも同様に倒す'],
+   video:'https://www.youtube.com/results?search_query=股関節ストレッチ+初心者'},
+  {type:'stretch', name:'肩甲骨はがし', parts:'肩甲骨・背中上部', time:'20秒×3回', effect:'高',
+   steps:['両手を後ろで組む','胸を張りながら肩甲骨を内側に寄せる','5秒キープ、ゆっくり戻す','腕を前で組んで背中を丸め5秒キープ'],
+   video:'https://www.youtube.com/results?search_query=肩甲骨はがしストレッチ'},
+  {type:'stretch', name:'ハムストリング伸ばし', parts:'太もも裏・腰', time:'30秒×両足', effect:'高',
+   steps:['床に座り片脚を伸ばす','背筋を伸ばしたまま上体を前に倒す','つま先方向にゆっくり体重をかける','反動をつけず30秒キープ'],
+   video:'https://www.youtube.com/results?search_query=ハムストリングストレッチ'},
+  {type:'stretch', name:'胸・前肩ほぐし', parts:'胸筋・肩前部', time:'20秒×2回', effect:'高',
+   steps:['壁の横に立ち、腕を90度に曲げて壁に当てる','体をゆっくり前に進めるように胸を開く','20秒キープ','反対側も同様に行う'],
+   video:'https://www.youtube.com/results?search_query=胸ストレッチ+壁'},
+  {type:'stretch', name:'首・肩ほぐし', parts:'首・僧帽筋', time:'各方向15秒', effect:'中',
+   steps:['背筋を伸ばして座るか立つ','頭をゆっくり右に傾け15秒','左手を頭に軽く添えて重みを加える','前後左右4方向繰り返す'],
+   video:'https://www.youtube.com/results?search_query=首肩ストレッチ'},
+  {type:'stretch', name:'腸腰筋ストレッチ', parts:'股関節前部・腰', time:'30秒×両側', effect:'高',
+   steps:['片膝立ちになる（ランジの姿勢）','後ろ足の股関節前面を床方向に沈める','骨盤を前傾させず30秒キープ','反対側も同様に行う'],
+   video:'https://www.youtube.com/results?search_query=腸腰筋ストレッチ'},
+  {type:'stretch', name:'脊柱ねじり', parts:'背骨・腰・お腹', time:'20秒×両側', effect:'高',
+   steps:['仰向けに寝て両膝を立てる','膝を揃えたまま右側に倒す','両肩は床につけたまま20秒キープ','反対側も同様に行う'],
+   video:'https://www.youtube.com/results?search_query=脊柱ストレッチ+ねじり'},
+  {type:'stretch', name:'足首まわし', parts:'足首・ふくらはぎ', time:'各方向10回', effect:'中',
+   steps:['椅子に座り片足を浮かせる','足首をゆっくり大きく内回りに10回','外回りに10回','反対の足も同様に行う'],
+   video:'https://www.youtube.com/results?search_query=足首ストレッチ'},
+  {type:'muscle', name:'スクワット', parts:'太もも・お尻・体幹', time:'10回×3セット', effect:'高',
+   steps:['足を肩幅に開いて立つ','つま先と膝を同じ方向に向ける','背筋を伸ばしたまま膝が90度になるまで下げる','かかとで床を押すように立ち上がる'],
+   video:'https://www.youtube.com/results?search_query=スクワット+正しいフォーム'},
+  {type:'muscle', name:'プランク', parts:'体幹全体', time:'30秒×3回', effect:'高',
+   steps:['うつ伏せで肘を床につく','つま先と肘だけで体を支える','背中が丸まらないよう一直線をキープ','30秒間、呼吸を止めずに耐える'],
+   video:'https://www.youtube.com/results?search_query=プランク+正しいやり方'},
+  {type:'muscle', name:'壁腕立て伏せ', parts:'胸筋・肩・腕', time:'10回×3セット', effect:'中',
+   steps:['壁の前に立ち、腕の長さ分離れる','両手を肩幅で壁につく','肘を曲げて胸を壁に近づける','ゆっくり押し戻す'],
+   video:'https://www.youtube.com/results?search_query=壁腕立て+初心者'},
+  {type:'muscle', name:'ヒップリフト', parts:'お尻・ハムストリング・体幹', time:'15回×3セット', effect:'高',
+   steps:['仰向けに寝て両膝を立てる','足裏で床を押し、お尻を天井方向に持ち上げる','肩からひざまで一直線になるよう意識する','ゆっくり下ろして繰り返す'],
+   video:'https://www.youtube.com/results?search_query=ヒップリフト+やり方'},
+  {type:'muscle', name:'カーフレイズ', parts:'ふくらはぎ', time:'15回×3セット', effect:'中',
+   steps:['両足を腰幅で立つ（壁に手をついてもOK）','かかとをゆっくり持ち上げる','つま先立ちで1秒キープ','ゆっくり下ろす'],
+   video:'https://www.youtube.com/results?search_query=カーフレイズ+やり方'},
+  {type:'muscle', name:'バードドッグ', parts:'体幹・背中・お尻', time:'10回×両側×2セット', effect:'高',
+   steps:['四つん這いになり手は肩の下、膝は腰の下','右手と左脚を同時にゆっくり伸ばす','体幹を安定させ3秒キープ','戻してから反対側を行う'],
+   video:'https://www.youtube.com/results?search_query=バードドッグ+体幹'},
+  {type:'muscle', name:'サイドレッグレイズ', parts:'お尻外側・太もも外側', time:'15回×両側×2セット', effect:'中',
+   steps:['横向きに寝て体を一直線に伸ばす','上の足をゆっくり天井方向に持ち上げる','足首を曲げてかかとを押し出すよう意識する','ゆっくり下ろして繰り返す'],
+   video:'https://www.youtube.com/results?search_query=サイドレッグレイズ'},
+  {type:'muscle', name:'クランチ', parts:'腹筋', time:'15回×3セット', effect:'中',
+   steps:['仰向けに寝て膝を90度に立てる','手を頭の後ろに添える（引っ張らない）','息を吐きながら肩甲骨が浮く程度に上体を起こす','ゆっくり下ろして繰り返す'],
+   video:'https://www.youtube.com/results?search_query=クランチ+腹筋+正しいやり方'},
+];
+
+let mode = 'both';
+let spinning = false;
+
+function setMode(m) {
+  mode = m;
+  document.querySelectorAll('.tab-btn').forEach((b, i) => {
+    b.classList.toggle('active', ['both','stretch','muscle'][i] === m);
+  });
+}
+
+function filtered() {
+  return mode === 'both' ? DATA : DATA.filter(d => d.type === mode);
+}
+
+function spin() {
+  if (spinning) return;
+  spinning = true;
+  const btn = document.getElementById('spinBtn');
+  btn.disabled = true;
+  document.getElementById('detailCard').classList.remove('visible');
+
+  const pool = filtered();
+  let ticks = 0;
+  const total = 18 + Math.floor(Math.random() * 10);
+  const wrapper = document.getElementById('slotWrapper');
+  wrapper.classList.add('slot-spinning');
+
+  const iv = setInterval(() => {
+    const r = pool[Math.floor(Math.random() * pool.length)];
+    document.getElementById('slotName').textContent = r.name;
+    document.getElementById('slotHint').textContent = r.parts;
+    ticks++;
+    if (ticks >= total) {
+      clearInterval(iv);
+      wrapper.classList.remove('slot-spinning');
+      const final = pool[Math.floor(Math.random() * pool.length)];
+      showResult(final);
+      spinning = false;
+      btn.disabled = false;
+    }
+  }, 90);
+}
+
+function showResult(item) {
+  document.getElementById('slotName').textContent = item.name;
+  document.getElementById('slotHint').textContent = item.parts + '　' + item.time;
+
+  const badge = document.getElementById('detailBadge');
+  badge.textContent = item.type === 'stretch' ? 'ストレッチ' : '筋トレ';
+  badge.className = 'detail-badge ' + (item.type === 'stretch' ? 'badge-stretch' : 'badge-muscle');
+
+  document.getElementById('detailTitle').textContent = item.name;
+  document.getElementById('detailMeta').innerHTML =
+    `<span class="meta-item">${item.parts}</span><span class="meta-item">${item.time}</span><span class="meta-item">効果: ${item.effect}</span>`;
+
+  document.getElementById('detailSteps').innerHTML = item.steps.map((s, i) =>
+    `<div class="step-row"><div class="step-num">${i+1}</div><div class="step-text">${s}</div></div>`
+  ).join('');
+
+  const vlink = document.getElementById('videoLink');
+  if (item.video) {
+    vlink.href = item.video;
+    document.getElementById('videoLinkText').textContent = item.name + ' の動画を探す（YouTube）';
+    vlink.style.display = 'flex';
+  } else {
+    vlink.style.display = 'none';
+  }
+
+  document.getElementById('detailCard').classList.add('visible');
+}
+</script>
+</body>
+</html>
