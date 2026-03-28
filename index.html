@@ -2,18 +2,20 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500&display=swap" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="しゃーないな">
-<meta name="theme-color" content="#f5f4f0">
+<meta name="apple-mobile-web-app-title" content="うごこっか♪">
+<meta name="theme-color" content="#f5f0e8">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>しゃーないな、やるか！</title>
+<title>うごこっか♪</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  font-family: -apple-system, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
-  background: #f5f4f0;
+  font-family: 'M PLUS Rounded 1c', 'Hiragino Maru Gothic ProN', 'Hiragino Sans', sans-serif;
+  background: #f5f0e8;
   min-height: 100vh;
   min-height: 100dvh;
   padding: 1.5rem 1rem env(safe-area-inset-bottom, 1.5rem);
@@ -25,16 +27,16 @@ h1 { text-align: center; font-size: 18px; font-weight: 500; color: #444441; marg
 .tab-row { display: flex; gap: 8px; margin-bottom: 1.25rem; }
 .tab-btn {
   flex: 1; padding: 10px; border-radius: 12px;
-  border: 0.5px solid #ccc; background: #fff;
-  font-size: 14px; font-weight: 500; color: #888;
+  border: 0.5px solid #d4c9b8; background: #efe9dd;
+  font-size: 16px; font-weight: 500; color: #5a5040;
   cursor: pointer; transition: all 0.15s; font-family: inherit;
   -webkit-tap-highlight-color: transparent;
 }
-.tab-btn.active { background: #e8e7e2; color: #1a1a18; border-color: #999; }
-.tab-btn:hover:not(.active) { background: #f0efeb; }
+.tab-btn.active { background: #c8b89a; color: #fff; border-color: #c8b89a; }
+.tab-btn:hover:not(.active) { background: #e8e0d2; }
 .slot-wrapper {
   border: 0.5px solid #ddd; border-radius: 14px;
-  padding: 1.5rem 1.25rem; background: #fff;
+  padding: 1.5rem 1.25rem; background: #faf7f2;
   margin-bottom: 1rem; min-height: 100px;
   display: flex; align-items: center; justify-content: center; text-align: center;
 }
@@ -48,30 +50,30 @@ h1 { text-align: center; font-size: 18px; font-weight: 500; color: #444441; marg
 }
 .spin-btn {
   width: 100%; padding: 15px; border-radius: 14px;
-  border: 0.5px solid #ccc; background: #fff;
+  border: 0.5px solid #d4c9b8; background: #efe9dd;
   font-size: 17px; font-weight: 500; color: #1a1a18;
   cursor: pointer; margin-bottom: 1.5rem;
   transition: background 0.1s, transform 0.1s; font-family: inherit;
   -webkit-tap-highlight-color: transparent;
 }
-.spin-btn:hover { background: #f0efeb; }
-.spin-btn:active { transform: scale(0.98); background: #e8e7e2; }
+.spin-btn:hover { background: #e8e0d2; }
+.spin-btn:active { transform: scale(0.98); background: #d8cfc0; }
 .spin-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 .detail-card { border: 0.5px solid #ddd; border-radius: 14px; overflow: hidden; display: none; }
 .detail-card.visible { display: block; }
-.detail-head { padding: 1rem 1.25rem; background: #f5f4f0; border-bottom: 0.5px solid #ddd; }
+.detail-head { padding: 1rem 1.25rem; background: #f5f0e8; border-bottom: 0.5px solid #ddd; }
 .detail-badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 6px; margin-bottom: 6px; font-weight: 500; }
 .badge-stretch { background: #d4f0e4; color: #0a6040; }
 .badge-muscle  { background: #fce5db; color: #8a3010; }
 .detail-title { font-size: 19px; font-weight: 500; color: #1a1a18; }
 .detail-body { padding: 1rem 1.25rem; background: #fff; }
 .detail-meta { display: flex; gap: 8px; margin-bottom: 1rem; flex-wrap: wrap; }
-.meta-item { font-size: 12px; color: #666; background: #f5f4f0; padding: 3px 10px; border-radius: 6px; }
+.meta-item { font-size: 12px; color: #666; background: #f5f0e8; padding: 3px 10px; border-radius: 6px; }
 .steps-title { font-size: 12px; font-weight: 500; color: #888; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.06em; }
 .step-row { display: flex; gap: 10px; margin-bottom: 9px; align-items: flex-start; }
 .step-num {
   width: 22px; height: 22px; border-radius: 50%;
-  background: #f0efeb; border: 0.5px solid #ddd;
+  background: #e8e0d2; border: 0.5px solid #d4c9b8;
   display: flex; align-items: center; justify-content: center;
   font-size: 11px; font-weight: 500; color: #666;
   flex-shrink: 0; margin-top: 1px;
@@ -84,35 +86,35 @@ h1 { text-align: center; font-size: 18px; font-weight: 500; color: #444441; marg
   background: #fff; transition: background 0.1s;
   -webkit-tap-highlight-color: transparent;
 }
-.video-link:hover { background: #f5f4f0; }
+.video-link:hover { background: #f5f0e8; }
 .play-icon { width: 24px; height: 24px; border-radius: 50%; background: #e02020; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .play-triangle { width:0; height:0; border-top:5px solid transparent; border-bottom:5px solid transparent; border-left:8px solid white; margin-left:2px; }
 @media (prefers-color-scheme: dark) {
-  body { background: #1a1a18; color: #e8e7e2; }
-  h1 { color: #aaa; }
-  .tab-btn { background: #2a2a28; border-color: #444; color: #888; }
-  .tab-btn.active { background: #3a3a38; color: #e8e7e2; border-color: #666; }
-  .tab-btn:hover:not(.active) { background: #333331; }
-  .slot-wrapper { background: #2a2a28; border-color: #444; }
-  .slot-name { color: #e8e7e2; }
-  .spin-btn { background: #2a2a28; border-color: #444; color: #e8e7e2; }
-  .spin-btn:hover { background: #333331; }
-  .spin-btn:active { background: #3a3a38; }
-  .detail-card { border-color: #444; }
-  .detail-head { background: #222220; border-color: #444; }
-  .detail-title { color: #e8e7e2; }
-  .detail-body { background: #2a2a28; }
-  .meta-item { background: #333331; color: #aaa; }
-  .step-num { background: #333331; border-color: #444; color: #aaa; }
-  .step-text { color: #e8e7e2; }
-  .video-link { background: #2a2a28; border-color: #444; color: #6ea8e0; }
-  .video-link:hover { background: #333331; }
+  body { background: #2a2520; color: #e8e0d4; }
+  .tab-btn { background: #38322c; border-color: #504840; color: #b0a090; }
+  .tab-btn.active { background: #c8b89a; color: #fff; border-color: #c8b89a; }
+  .tab-btn:hover:not(.active) { background: #443c34; }
+  .slot-wrapper { background: #332d27; border-color: #504840; }
+  .slot-name { color: #e8e0d4; }
+  .slot-hint { color: #a09080; }
+  .spin-btn { background: #38322c; border-color: #504840; color: #e8e0d4; }
+  .spin-btn:hover { background: #443c34; }
+  .spin-btn:active { background: #504840; }
+  .detail-card { border-color: #504840; }
+  .detail-head { background: #2e2820; border-color: #504840; }
+  .detail-title { color: #e8e0d4; }
+  .detail-body { background: #332d27; }
+  .meta-item { background: #3e3830; color: #b0a090; }
+  .step-num { background: #3e3830; border-color: #504840; color: #b0a090; }
+  .step-text { color: #e8e0d4; }
+  .video-link { background: #332d27; border-color: #504840; color: #a8c4d8; }
+  .video-link:hover { background: #3e3830; }
 }
 </style>
 </head>
 <body>
 <div id="app">
-  <h1>しゃーないな、やるか！</h1>
+  
   <div class="tab-row">
     <button class="tab-btn active" onclick="setMode('both')">どちらでも</button>
     <button class="tab-btn" onclick="setMode('stretch')">ストレッチ</button>
@@ -125,7 +127,7 @@ h1 { text-align: center; font-size: 18px; font-weight: 500; color: #444441; marg
       <div class="slot-hint" id="slotHint">ボタンを押してください</div>
     </div>
   </div>
-  <button class="spin-btn" id="spinBtn" onclick="spin()">🌵 しゃーないな、やるか</button>
+  <button class="spin-btn" id="spinBtn" onclick="spin()">うごこっか 🌵</button>
   <div class="detail-card" id="detailCard">
     <div class="detail-head">
       <div id="detailBadge" class="detail-badge"></div>
